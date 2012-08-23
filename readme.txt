@@ -1,7 +1,7 @@
 === Plugin Name ===
 Contributors: halgatewood
 Tags: food, nutrition, nutrition label, nutrition facts
-Tested up to: 3.2
+Tested up to: 3.4
 Requires at least: 3.0
 Stable tag: 1
 
