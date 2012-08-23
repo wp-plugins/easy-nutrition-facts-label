@@ -9,7 +9,9 @@ Stable tag: 1
 
 This plugin creates a 'nutrition-label' custom post type which can be assigned to any page or post. 
 
-You can also include a label with the shortcode 'nutrition-label' which generates a FDA-style nutrition label.
+Use the shortcode 'nutrition-label'to generate a FDA-style nutrition label.
+
+Developers can add do_shortcode('[nutrition-label]') to their templates so their clients can automatically assign labels to posts and pages.
 
 See http://en.wikipedia.org/wiki/Nutrition_facts_label for more information on nutrition labels.
 
