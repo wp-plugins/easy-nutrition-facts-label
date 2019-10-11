@@ -8,77 +8,65 @@ Domain Path: /languages
 Author: Hal Gatewood
 Version: 1.0
 Author URI: http://halgatewood.com/
-
 Forked from: http://romkey.com/code/wp-nutrition-label
 */
-
-
 /* ADDS */
 add_shortcode( 'nutrition-label', 'nutr_label_shortcode');
 add_action( 'wp_head', 'nutr_style');
 add_action( 'init', 'nutr_init');
 add_filter( 'manage_edit-nutrition-label_columns', 'nutr_modify_nutritional_label_table' );
 add_filter( 'manage_posts_custom_column', 'nutr_modify_nutritional_label_table_row', 10, 2 );
-
 add_action( 'add_meta_boxes', 'nutr_create_metaboxes' );
 add_action( 'save_post', 'nutr_save_meta', 1, 2 );
-
-
 /* RDA SETTINGS */
 $rda = array(
-		'totalfat' 			=> 65,
-		'satfat' 			=> 20,
+		'totalfat' 		=> 65,
+		'satfat' 		=> 20,
 		'cholesterol' 		=> 300,
-		'sodium' 			=> 2400,
+		'sodium' 		=> 2400,
 		'carbohydrates' 	=> 300,
-		'fiber' 			=> 25,
-		'protein' 			=> 50,
+		'fiber' 		=> 25,
+		'protein' 		=> 50,
 		'vitamin_a' 		=> 5000,
 		'vitamin_c' 		=> 60,
-		'calcium' 			=> 1000,
-		'iron' 				=> 18
+		'calcium' 		=> 1000,
+		'iron' 			=> 18
 		);
-
-
 /* BASE NUTRIIONAL FIELDS */
 $nutrional_fields = array(
-					'servingsize' 	=> __('Serving Size'),
-					'servings' 		=> __('Servings'),
-					'calories' 		=> __('Calories'),
-					'totalfat' 		=> __('Total Fat'),
-					'satfat' 		=> __('Saturated Fat'),
-					'transfat' 		=> __('Trans. Fat'),
-					'cholesterol' 	=> __('Cholesterol'),
-					'sodium' 		=> __('Sodium'),
-					'carbohydrates' => __('Carbohydrates'),
-					'fiber' 		=> __('Fiber'),
-					'sugars' 		=> __('Sugars'),
-					'protein' 		=> __('Protein')
+					'servingsize' 	=> __('Serving Size','easy-nutrition-facts-label'),
+					'servings' 		=> __('Servings','easy-nutrition-facts-label'),
+					'calories' 		=> __('Calories','easy-nutrition-facts-label'),
+					'totalfat' 		=> __('Total Fat','easy-nutrition-facts-label'),
+					'satfat' 		=> __('Saturated Fat','easy-nutrition-facts-label'),
+					'transfat' 		=> __('Trans. Fat','easy-nutrition-facts-label'),
+					'cholesterol' 	=> __('Cholesterol','easy-nutrition-facts-label'),
+					'sodium' 		=> __('Sodium','easy-nutrition-facts-label'),
+					'carbohydrates' => __('Carbohydrates','easy-nutrition-facts-label'),
+					'fiber' 		=> __('Fiber','easy-nutrition-facts-label'),
+					'sugars' 		=> __('Sugars','easy-nutrition-facts-label'),
+					'protein' 		=> __('Protein','easy-nutrition-facts-label')
 );
-
-
-
 /*
  * Init
  */
 function nutr_init()
 {
-	load_plugin_textdomain('wp-nutrition-label', false, 'wp-nutrition-label/languages/');
-
+	load_plugin_textdomain('easy-nutrition-facts-label', false, 'easy-nutrition-facts-label/languages/');
 	$labels = array(
-		'name' => __('Nutritional Labels'),
-		'singular_name' => __('Label'),
-		'add_new' => __('Add New'),
-		'add_new_item' => __('Add New Label'),
-		'edit_item' => __('Edit Label'),
-		'new_item' => __('New Label'),
-		'all_items' => __('All Labels'),
-		'view_item' => __('View Label'),
-		'search_items' => __('Search Labels'),
-		'not_found' =>  __('No labels found'),
-		'not_found_in_trash' => __('No labels found in Trash'), 
+		'name' => __('Nutritional Labels','easy-nutrition-facts-label'),
+		'singular_name' => __('Label','easy-nutrition-facts-label'),
+		'add_new' => __('Add New','easy-nutrition-facts-label'),
+		'add_new_item' => __('Add New Label','easy-nutrition-facts-label'),
+		'edit_item' => __('Edit Label','easy-nutrition-facts-label'),
+		'new_item' => __('New Label','easy-nutrition-facts-label'),
+		'all_items' => __('All Labels','easy-nutrition-facts-label'),
+		'view_item' => __('View Label','easy-nutrition-facts-label'),
+		'search_items' => __('Search Labels','easy-nutrition-facts-label'),
+		'not_found' =>  __('No labels found','easy-nutrition-facts-label'),
+		'not_found_in_trash' => __('No labels found in Trash','easy-nutrition-facts-label'), 
 		'parent_item_colon' => '',
-		'menu_name' => __('Labels')
+		'menu_name' => __('Labels','easy-nutrition-facts-label')
 	);
 	
 	$args = array(
@@ -98,8 +86,6 @@ function nutr_init()
 	); 
 	register_post_type('nutrition-label', $args);
 }
-
-
 /*
  * Meta Box with Data
  */
@@ -107,13 +93,12 @@ function nutr_create_metaboxes()
 {
 	add_meta_box( 'nutr_create_metabox_1', 'Nutritional Label Options', 'nutr_create_metabox_1', 'nutrition-label', 'normal', 'default' );
 }
-
 function nutr_create_metabox_1()
 {
 	global $post, $nutrional_fields;	
 	$meta_values = get_post_meta( $post->ID );
 	
-	$pages = get_posts( array( 'post_type' => 'page', 'numberposts' => -1 ) );
+	$pages = get_posts( array( 'post_type' => 'portfolio', 'numberposts' => -1 ) );
 	$posts = get_posts( array( 'numberposts' => -1 ) );
 	
 	$selected_page_id = isset($meta_values['_pageid']) ? $meta_values['_pageid'][0] : 0;
@@ -124,8 +109,8 @@ function nutr_create_metabox_1()
 			<?php _e('Page'); ?>
 		</div>
 		<select name="pageid" style="float: left;">
-			<option value=""><?php _e('Select a Page...'); ?></option>
-			<optgroup label="<?php _e('Pages'); ?>">
+			<option value=""><?php _e('Select a Product...','easy-nutrition-facts-label'); ?></option>
+			<optgroup label="<?php _e('Products','easy-nutrition-facts-label'); ?>">
 				<?php foreach($pages as $page) { ?>
 				<option value="<?php echo $page->ID ?>"<?php if($selected_page_id == $page->ID) echo " SELECTED"; ?>><?php echo $page->post_title ?></option>
 				<?php } ?>
@@ -152,7 +137,6 @@ function nutr_create_metabox_1()
 <?php
 	}
 }
-
 function nutr_save_meta( $post_id, $post ) 
 {
 	global $nutrional_fields;
@@ -163,8 +147,6 @@ function nutr_save_meta( $post_id, $post )
 	
 	if ( isset( $_POST[ 'pageid' ] ) ) { update_post_meta( $post_id, '_pageid', strip_tags( $_POST[ 'pageid' ] ) ); }
 }
-
-
 /*
  * Add Column to WordPress Admin 
  * Displays the shortcode needed to show label
@@ -181,7 +163,6 @@ function nutr_modify_nutritional_label_table( $column )
 		'nutr_page'    		=> 'Page',
 		'date'     			=> 'Date'
 	);
-
 	return $columns;
 }
 function nutr_modify_nutritional_label_table_row( $column_name, $post_id ) 
@@ -197,8 +178,6 @@ function nutr_modify_nutritional_label_table_row( $column_name, $post_id )
  	}
  	
 }
-
-
 /*
  * output our style sheet at the head of the file
  * because it's brief, we just embed it rather than force an extra http fetch
@@ -227,8 +206,6 @@ function nutr_style()
 </style>
 <?php
 }
-
-
 /*
  *
  * @param array $atts
@@ -252,8 +229,6 @@ function nutr_label_shortcode($atts)
 		}
 	}
 }
-
-
 /*
  * @param integer $contains
  * @param integer $reference
@@ -263,8 +238,6 @@ function nutr_percentage($contains, $reference)
 {
 	return round( $contains / $reference * 100 );
 }
-
-
 /*
  * @param array $args
  * @return string
@@ -282,7 +255,6 @@ function nutr_label_generate( $id, $width = 22 )
 	{
 		$$name = $label['_' . $name][0];	
 	}
-
 	// BUILD CALORIES IF WE DONT HAVE ANY
 	if($calories == 0) 
 	{
@@ -299,72 +271,71 @@ function nutr_label_generate( $id, $width = 22 )
 	$rtn = "";
 	$rtn .= "<div class='wp-nutrition-label' id='wp-nutrition-label-$id' " . ($style ? $style : "") . ">\n";
 	
-	$rtn .= "	<div class='heading'>".__("Nutrition Facts")."</div>\n";
+	$rtn .= "	<div class='heading'>".__("Nutrition Facts",'easy-nutrition-facts-label')."</div>\n";
 	
-	$rtn .= "	<div>" . __("Serving Size") . " " . $servingsize . "</div>\n";
-	$rtn .= "	<div>" . __("Servings Per Container") . " " . $servings . "</div>\n";
+	$rtn .= "	<div>" . __("Serving Size",'easy-nutrition-facts-label') . " " . $servingsize . "</div>\n";
+	$rtn .= "	<div>" . __("Servings Per Container",'easy-nutrition-facts-label') . " " . $servings . "</div>\n";
 	
 	$rtn .= "	<hr />\n";
-	$rtn .= "	<div class='amount-per small item_row noborder'>Amount Per Serving</div>\n";
+	$rtn .= "	<div class='amount-per small item_row noborder'>".__("Amount Per Serving",'easy-nutrition-facts-label')."</div>\n";
 	
 	$rtn .= "	<div class='item_row cf'>\n";
-	$rtn .= "		<span class='f-left'>" . __("Calories") . " " . $calories . "</span>\n";
-	$rtn .= "		<span class='f-right'>Calories from Fat " . ($totalfat * 9) . "</span>\n";
+	$rtn .= "		<span class='f-left'>" . __("Calories",'easy-nutrition-facts-label') . " " . $calories . "</span>\n";
+	$rtn .= "		<span class='f-right'>". __("Calories from Fat",'easy-nutrition-facts-label') . " " . ($totalfat * 9) . "</span>\n";
 	$rtn .= "	</div>\n";
 	
-	$rtn .= "	<div class='item_row daily-value small'>% " . __("Daily Value") . "*</div>\n";
+	$rtn .= "	<div class='item_row daily-value small'>% " . __("Daily Value",'easy-nutrition-facts-label') . "*</div>\n";
 	
 	$rtn .= "	<div class='item_row cf'>\n";
-	$rtn .= "		<span class='f-left'><strong>" . __("Total Fat") . "</strong> " . $totalfat . "g</span>\n";
+	$rtn .= "		<span class='f-left'><strong>" . __("Total Fat",'easy-nutrition-facts-label') . "</strong> " . $totalfat . "g</span>\n";
 	$rtn .= "		<span class='f-right'>" . nutr_percentage($totalfat, $rda['totalfat']) . "%</span>\n";
 	$rtn .= "	</div>\n";
 	
 	$rtn .= "	<div class='indent item_row cf'>\n";
-	$rtn .= "		<span class='f-left'>" . __("Saturated Fat") . " " . $satfat . "g</span>\n";
+	$rtn .= "		<span class='f-left'>" . __("Saturated Fat",'easy-nutrition-facts-label') . " " . $satfat . "g</span>\n";
 	$rtn .= "		<span class='f-right'>" . nutr_percentage($satfat, $rda['satfat']) . "%</span>\n";
 	$rtn .= "	</div>\n";
 	
 	$rtn .= "	<div class='indent item_row cf'>\n";
-	$rtn .= "		<span>" . __("Trans Fat") . " " . $transfat . "g</span>";
+	$rtn .= "		<span>" . __("Trans Fat",'easy-nutrition-facts-label') . " " . $transfat . "g</span>";
 	$rtn .= "	</div>\n";
 	
 	$rtn .= "	<div class='item_row cf'>\n";
-	$rtn .= "		<span class='f-left'><strong>" . __("Cholesterol") . "</strong> " . $cholesterol . "mg</span>\n";
+	$rtn .= "		<span class='f-left'><strong>" . __("Cholesterol",'easy-nutrition-facts-label') . "</strong> " . $cholesterol . "mg</span>\n";
 	$rtn .= "		<span class='f-right'>" . nutr_percentage($cholesterol, $rda['cholesterol']) . "%</span>\n";
 	$rtn .= "	</div>\n";
 	
 	$rtn .= "	<div class='item_row cf'>\n";
-	$rtn .= "		<span class='f-left'><strong>" . __("Sodium")."</strong> " . $sodium . "mg</span>\n";
+	$rtn .= "		<span class='f-left'><strong>" . __("Sodium",'easy-nutrition-facts-label')."</strong> " . $sodium . "mg</span>\n";
 	$rtn .= "		<span class='f-right'>" . nutr_percentage($sodium, $rda['sodium']) . "%</span>\n";
 	$rtn .= "	</div>\n";
 	
 	$rtn .= "	<div class='item_row cf'>\n";
-	$rtn .= "		<span class='f-left'><strong>" . __("Total Carbohydrate") . "</strong> " . $carbohydrates . "g</span>\n";
+	$rtn .= "		<span class='f-left'><strong>" . __("Total Carbohydrate",'easy-nutrition-facts-label') . "</strong> " . $carbohydrates . "g</span>\n";
 	$rtn .= "		<span class='f-right'>" . nutr_percentage($carbohydrates, $rda['carbohydrates']) . "%</span>\n";
 	$rtn .= "	</div>\n";
 	
 	$rtn .= "	<div class='indent item_row cf'>\n";
-	$rtn .= "		<span class='f-left'>" . __("Dietary Fiber")." ".$fiber . "g</span>\n";
+	$rtn .= "		<span class='f-left'>" . __("Dietary Fiber",'easy-nutrition-facts-label')." ".$fiber . "g</span>\n";
 	$rtn .= "		<span class='f-right'>" . nutr_percentage($fiber, $rda['fiber']) . "%</span>\n";
 	$rtn .= "	</div>\n";
 	
 	$rtn .= "	<div class='indent item_row cf'>\n";
-	$rtn .= "		<span>".__("Sugars")." ".$sugars."g</span>";
+	$rtn .= "		<span>".__("Sugars",'easy-nutrition-facts-label')." ".$sugars."g</span>";
 	$rtn .= "	</div>\n";
 	
 	$rtn .= "	<div class='item_row cf'>\n";
-	$rtn .= "		<span class='f-left'><strong>".__("Protein")."</strong> ".$protein."g</span>\n";
+	$rtn .= "		<span class='f-left'><strong>".__("Protein",'easy-nutrition-facts-label')."</strong> ".$protein."g</span>\n";
 	$rtn .= "		<span class='f-right'>".nutr_percentage($protein, $rda['protein'])."%</span>\n";
 	$rtn .= "	</div>\n";
 	
 	$rtn .= "	<hr />\n";
 	
 	$rtn .= "	<div class='small cf'>\n";
-	$rtn .= "		*" . __("Percent Daily Values are based on a 2,000 calorie diet. Your daily values may be higher or lower depending on your calorie needs.");
+	$rtn .= "		*" . __("Percent Daily Values are based on a 2,000 calorie diet. Your daily values may be higher or lower depending on your calorie needs.",'easy-nutrition-facts-label');
 	$rtn .= "	</div>\n";
   
 	$rtn .= "</div> <!-- /wp-nutrition-label -->\n\n";
 	return $rtn;  
 }
-
 ?>

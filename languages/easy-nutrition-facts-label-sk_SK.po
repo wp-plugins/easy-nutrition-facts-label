@@ -1,0 +1,170 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Easy Nutrition Facts Label for SUBWAY\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-23 13:39+0200\n"
+"PO-Revision-Date: 2019-08-27 09:59+0000\n"
+"Last-Translator: skre <samuel@takto.sk>\n"
+"Language-Team: Slovenčina\n"
+"Language: sk_SK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=( n == 1 ) ? 0 : ( n >= 2 && n <= 4 ) ? 1 : "
+"2;\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.3.0; wp-5.2.2"
+
+#: easy-nutrition-facts-label.php:45 easy-nutrition-facts-label.php:304
+msgid "Serving Size"
+msgstr "Hmotnosť porcie"
+
+#: easy-nutrition-facts-label.php:46
+msgid "Servings"
+msgstr "Hmotnosť"
+
+#: easy-nutrition-facts-label.php:47 easy-nutrition-facts-label.php:311
+msgid "Calories"
+msgstr "Kalórie"
+
+#: easy-nutrition-facts-label.php:48 easy-nutrition-facts-label.php:318
+msgid "Total Fat"
+msgstr "Tuky"
+
+#: easy-nutrition-facts-label.php:49 easy-nutrition-facts-label.php:323
+msgid "Saturated Fat"
+msgstr "nas. mastné kyseliny"
+
+#: easy-nutrition-facts-label.php:50
+msgid "Trans. Fat"
+msgstr "trans-mastné kyseliny"
+
+#: easy-nutrition-facts-label.php:51 easy-nutrition-facts-label.php:332
+msgid "Cholesterol"
+msgstr ""
+
+#: easy-nutrition-facts-label.php:52 easy-nutrition-facts-label.php:337
+msgid "Sodium"
+msgstr "Sodík"
+
+#: easy-nutrition-facts-label.php:53
+msgid "Carbohydrates"
+msgstr ""
+
+#: easy-nutrition-facts-label.php:54
+msgid "Fiber"
+msgstr "Vláknina"
+
+#: easy-nutrition-facts-label.php:55 easy-nutrition-facts-label.php:352
+msgid "Sugars"
+msgstr "cukry"
+
+#: easy-nutrition-facts-label.php:56 easy-nutrition-facts-label.php:356
+msgid "Protein"
+msgstr "Bielkoviny"
+
+#: easy-nutrition-facts-label.php:69
+msgid "Nutritional Labels"
+msgstr "Nutričné tabuľky"
+
+#: easy-nutrition-facts-label.php:70
+msgid "Label"
+msgstr ""
+
+#: easy-nutrition-facts-label.php:71
+msgid "Add New"
+msgstr ""
+
+#: easy-nutrition-facts-label.php:72
+msgid "Add New Label"
+msgstr ""
+
+#: easy-nutrition-facts-label.php:73
+msgid "Edit Label"
+msgstr ""
+
+#: easy-nutrition-facts-label.php:74
+msgid "New Label"
+msgstr "Nová tabuľka"
+
+#: easy-nutrition-facts-label.php:75
+msgid "All Labels"
+msgstr "Všetky tabuľky"
+
+#: easy-nutrition-facts-label.php:76
+msgid "View Label"
+msgstr ""
+
+#: easy-nutrition-facts-label.php:77
+msgid "Search Labels"
+msgstr ""
+
+#: easy-nutrition-facts-label.php:78
+msgid "No labels found"
+msgstr ""
+
+#: easy-nutrition-facts-label.php:79
+msgid "No labels found in Trash"
+msgstr ""
+
+#: easy-nutrition-facts-label.php:81
+msgid "Labels"
+msgstr "Nutričné tabuľky"
+
+#: easy-nutrition-facts-label.php:124
+msgid "Page"
+msgstr ""
+
+#: easy-nutrition-facts-label.php:127
+msgid "Select a Product..."
+msgstr "Vybrať produkt"
+
+#: easy-nutrition-facts-label.php:128
+msgid "Products"
+msgstr ""
+
+#: easy-nutrition-facts-label.php:133
+msgid "Posts"
+msgstr ""
+
+#: easy-nutrition-facts-label.php:302
+msgid "Nutrition Facts"
+msgstr "Nutričné hodnoty"
+
+#: easy-nutrition-facts-label.php:305
+msgid "Servings Per Container"
+msgstr "Počet porcií v balení"
+
+#: easy-nutrition-facts-label.php:308
+msgid "Amount Per Serving"
+msgstr "Množstvo na porciu"
+
+#: easy-nutrition-facts-label.php:315
+msgid "Daily Value"
+msgstr "Denného príjmu"
+
+#: easy-nutrition-facts-label.php:328
+msgid "Trans Fat"
+msgstr "trans-mastné kyseliny"
+
+#: easy-nutrition-facts-label.php:342
+msgid "Total Carbohydrate"
+msgstr "Sacharidy"
+
+#: easy-nutrition-facts-label.php:347
+msgid "Dietary Fiber"
+msgstr "Vláknina"
+
+#: easy-nutrition-facts-label.php:363
+msgid ""
+"Percent Daily Values are based on a 2,000 calorie diet. Your daily values "
+"may be higher or lower depending on your calorie needs."
+msgstr ""
+"Denné odporúčané hodnoty sú založené na príjme 2000kcal príjme denne. Vaše "
+"denné hodnoty môžu byť vyššie alebo nižšie závisiac od individuálneho "
+"potrebného príjmu."
