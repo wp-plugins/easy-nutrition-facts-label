@@ -3,7 +3,7 @@
 Plugin Name: Easy Nutrition Facts Label
 Plugin URI: http://halgatewood.com/easy-nutrition-facts-label
 Description:  Easily add FDA-style nutrition labels to pages and posts.
-Text Domain: nutrition-facts-label
+Text Domain: easy-nutrition-facts-label
 Domain Path: /languages
 Author: Hal Gatewood
 Version: 1.0
