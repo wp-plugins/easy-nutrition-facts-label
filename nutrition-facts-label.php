@@ -26,17 +26,17 @@ add_action( 'save_post', 'nutr_save_meta', 1, 2 );
 
 /* RDA SETTINGS */
 $rda = array(
-		'totalfat' 			=> 65,
-		'satfat' 			=> 20,
+		'totalfat' 		=> 65,
+		'satfat' 		=> 20,
 		'cholesterol' 		=> 300,
-		'sodium' 			=> 2400,
+		'sodium' 		=> 2400,
 		'carbohydrates' 	=> 300,
-		'fiber' 			=> 25,
-		'protein' 			=> 50,
+		'fiber' 		=> 25,
+		'protein' 		=> 50,
 		'vitamin_a' 		=> 5000,
 		'vitamin_c' 		=> 60,
-		'calcium' 			=> 1000,
-		'iron' 				=> 18
+		'calcium' 		=> 1000,
+		'iron' 			=> 18
 		);
 
 
